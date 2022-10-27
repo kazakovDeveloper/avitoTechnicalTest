@@ -20,7 +20,7 @@ final class EmployeePresenter {
     private let cacheData = UserDefaultsService.shared
     
     public func getModelData() {
-        if cacheData.saveDate.timeIntervalSinceNow > 3600 {
+        if cacheData.saveDate.timeIntervalSinceNow > 3600 || cacheData.saveDate == Date.distantPast {
             guard let url = URL(string: "https://run.mocky.io/v3/1d1cb4ec-73db-4762-8c4b-0b8aa3cecd4c")else { return }
             
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
